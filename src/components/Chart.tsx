@@ -26,10 +26,10 @@ const Chart = () => {
   }, []);
 
   const handleHover = (e: any) => {
-    const isTooltipActive = e.isTooltipActive;
-    const activePayload = e.activePayload;
+    const { isTooltipActive, activePayload } = e;
+    const dataExist = isTooltipActive && activePayload;
 
-    if (isTooltipActive && activePayload) {
+    if (dataExist) {
       const date = activePayload[0].payload.date;
       setHover(date);
     }
