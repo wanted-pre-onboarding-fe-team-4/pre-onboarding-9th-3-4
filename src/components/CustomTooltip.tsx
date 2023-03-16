@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 
 const CustomTooltip = ({ active, payload }: any) => {
-  const condition = !active || !payload || !payload.length;
+  const valid = active && payload?.length;
 
-  if (condition) {
+  if (!valid) {
     return null;
   }
 
-  const payloadData = payload[0].payload;
+  const { id, value_area, value_bar, date } = payload[0].payload;
 
   return (
     <TooltipStyle>
-      <p>{`ID: ${payloadData.id}`}</p>
-      <p>{`Area: ${payloadData.value_area}`}</p>
-      <p>{`Bar: ${payloadData.value_bar}`}</p>
-      <p>{`Date: ${payloadData.date}`}</p>
+      <p>{`ID: ${id}`}</p>
+      <p>{`Area: ${value_area}`}</p>
+      <p>{`Bar: ${value_bar}`}</p>
+      <p>{`Date: ${date}`}</p>
     </TooltipStyle>
   );
 };
