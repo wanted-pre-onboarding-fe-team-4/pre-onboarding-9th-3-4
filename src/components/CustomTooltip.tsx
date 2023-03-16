@@ -11,10 +11,10 @@ const CustomTooltip = ({ active, payload }: any) => {
 
   return (
     <TooltipStyle>
-      <p>{`ID: ${id}`}</p>
-      <p>{`Area: ${value_area}`}</p>
-      <p>{`Bar: ${value_bar}`}</p>
-      <p>{`Date: ${date}`}</p>
+      <p>ID: {id}</p>
+      <p>Area: {value_area}</p>
+      <p>Bar: {value_bar}</p>
+      <p>Date: {date}</p>
     </TooltipStyle>
   );
 };
