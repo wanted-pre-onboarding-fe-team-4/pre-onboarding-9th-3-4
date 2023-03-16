@@ -85,16 +85,17 @@ const Chart = () => {
         barSize={20}
         stroke={ChartStyleConfig.BAR_STROKE_COLOR}
       >
-        {chartData?.map((el: { date: Key | null | undefined }) => (
-          <Cell
-            key={el.date}
-            fill={
-              el.date === hover
-                ? ChartStyleConfig.BAR_HIGHRIGHT_COLOR
-                : ChartStyleConfig.BAR_FILL_COLOR
-            }
-          />
-        ))}
+        {chartData &&
+          chartData.map((el: { date: Key | null | undefined }) => (
+            <Cell
+              key={el.date}
+              fill={
+                el.date === hover
+                  ? ChartStyleConfig.BAR_HIGHRIGHT_COLOR
+                  : ChartStyleConfig.BAR_FILL_COLOR
+              }
+            />
+          ))}
       </Bar>
       <Area
         type='monotone'
