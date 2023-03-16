@@ -12,6 +12,10 @@ import {
 import getData from '../api/getData';
 import { IChartData } from '../types/dataType';
 
+const CHART_WIDTH = 1600;
+const CHART_HEIGHT = 800;
+const CHART_MARGIN = { top: 20, right: 30, left: 30, bottom: 0 };
+
 const Chart = () => {
   const [chartData, setChartData] = useState<IChartData[]>();
 
@@ -23,10 +27,10 @@ const Chart = () => {
 
   return (
     <ComposedChart
-      width={1600}
-      height={800}
+      width={CHART_WIDTH}
+      height={CHART_HEIGHT}
       data={chartData}
-      margin={{ top: 20, right: 30, left: 30, bottom: 0 }}
+      margin={CHART_MARGIN}
     >
       <XAxis
         dataKey='date'
