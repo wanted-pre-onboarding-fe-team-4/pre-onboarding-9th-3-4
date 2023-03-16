@@ -38,6 +38,7 @@ const Chart = () => {
       data={chartData}
       margin={ChartStyleConfig.CHART_MARGIN}
       onMouseMove={(e) => handleHover(e)}
+      onMouseLeave={() => setHover('')}
     >
       <XAxis
         dataKey='date'
