@@ -11,7 +11,7 @@ import {
   Cell,
 } from 'recharts';
 import getData from '../api/getData';
-import { activedot, ChartStyleConfig } from '../config/ChartStyleConfig';
+import { activeDot, ChartStyleConfig } from '../config/ChartStyleConfig';
 import { IChartData } from '../types/dataType';
 import CustomTooltip from './CustomTooltip';
 
@@ -104,7 +104,7 @@ const Chart = () => {
         fill={ChartStyleConfig.AREA_FILL_COLOR}
         fillOpacity={0.8}
         stroke={ChartStyleConfig.AREA_STROKE_COLOR}
-        activeDot={activedot}
+        activeDot={activeDot}
       />
     </ComposedChart>
   );

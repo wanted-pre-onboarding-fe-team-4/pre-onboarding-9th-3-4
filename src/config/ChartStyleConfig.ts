@@ -9,7 +9,7 @@ export const ChartStyleConfig = {
   AREA_STROKE_COLOR: '#ff7875',
 };
 
-export const activedot = {
+export const activeDot = {
   stroke: 'red',
   strokeWidth: 5,
   r: 10,
