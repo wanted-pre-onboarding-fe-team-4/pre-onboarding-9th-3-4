@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Key, useEffect, useState } from 'react';
 import {
   ComposedChart,
   XAxis,
@@ -8,13 +8,16 @@ import {
   CartesianGrid,
   Bar,
   Area,
+  Cell,
 } from 'recharts';
 import getData from '../api/getData';
 import { ChartStyleConfig } from '../config/ChartStyleConfig';
 import { IChartData } from '../types/dataType';
+import CustomTooltip from './CustomTooltip';
 
 const Chart = () => {
   const [chartData, setChartData] = useState<IChartData[]>();
+  const [hover, setHover] = useState('');
 
   useEffect(() => {
     getData().then((res) => {
@@ -22,12 +25,19 @@ const Chart = () => {
     });
   }, []);
 
+  const handleHover = (e: any) => {
+    if (e.isTooltipActive && e.activePayload) {
+      setHover(e.activePayload[0]?.payload.date);
+    }
+  };
+
   return (
     <ComposedChart
       width={ChartStyleConfig.CHART_WIDTH}
       height={ChartStyleConfig.CHART_HEIGHT}
       data={chartData}
       margin={ChartStyleConfig.CHART_MARGIN}
+      onMouseMove={(e) => handleHover(e)}
     >
       <XAxis
         dataKey='date'
@@ -60,7 +70,7 @@ const Chart = () => {
         }}
       />
 
-      <Tooltip />
+      <Tooltip content={<CustomTooltip />} />
       <Legend align='center' />
       <CartesianGrid stroke='#f5f5f5' />
 
@@ -68,9 +78,17 @@ const Chart = () => {
         dataKey='value_bar'
         yAxisId='bar'
         barSize={20}
-        fill={ChartStyleConfig.BAR_FILL_COLOR}
         stroke={ChartStyleConfig.BAR_STROKE_COLOR}
-      />
+      >
+        {chartData?.map((el: { date: Key | null | undefined }) => (
+          <Cell
+            key={el.date}
+            fill={
+              el.date === hover ? '#2F58CD' : ChartStyleConfig.BAR_FILL_COLOR
+            }
+          />
+        ))}
+      </Bar>
       <Area
         type='monotone'
         yAxisId='area'
@@ -78,7 +96,8 @@ const Chart = () => {
         fill={ChartStyleConfig.AREA_FILL_COLOR}
         fillOpacity={0.8}
         stroke={ChartStyleConfig.AREA_STROKE_COLOR}
-      ></Area>
+        activeDot={{ stroke: 'red', strokeWidth: 5, r: 10, fill: 'white' }}
+      />
     </ComposedChart>
   );
 };
