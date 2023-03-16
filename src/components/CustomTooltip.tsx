@@ -1,17 +1,22 @@
 import styled from 'styled-components';
 
 const CustomTooltip = ({ active, payload }: any) => {
-  if (active && payload && payload.length) {
-    return (
-      <TooltipStyle className='custom-tooltip'>
-        <p>{`ID: ${payload[0].payload.id}`}</p>
-        <p>{`Area: ${payload[0].payload.value_area}`}</p>
-        <p>{`Bar: ${payload[0].payload.value_bar}`}</p>
-        <p>{`Date: ${payload[0].payload.date}`}</p>
-      </TooltipStyle>
-    );
+  const condition = !active || !payload || !payload.length;
+
+  if (condition) {
+    return null;
   }
-  return null;
+
+  const payloadData = payload[0].payload;
+
+  return (
+    <TooltipStyle>
+      <p>{`ID: ${payloadData.id}`}</p>
+      <p>{`Area: ${payloadData.value_area}`}</p>
+      <p>{`Bar: ${payloadData.value_bar}`}</p>
+      <p>{`Date: ${payloadData.date}`}</p>
+    </TooltipStyle>
+  );
 };
 
 export default CustomTooltip;

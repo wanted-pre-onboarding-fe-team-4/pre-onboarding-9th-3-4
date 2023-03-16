@@ -11,7 +11,7 @@ import {
   Cell,
 } from 'recharts';
 import getData from '../api/getData';
-import { ChartStyleConfig } from '../config/ChartStyleConfig';
+import { activedot, ChartStyleConfig } from '../config/ChartStyleConfig';
 import { IChartData } from '../types/dataType';
 import CustomTooltip from './CustomTooltip';
 
@@ -26,8 +26,12 @@ const Chart = () => {
   }, []);
 
   const handleHover = (e: any) => {
-    if (e.isTooltipActive && e.activePayload) {
-      setHover(e.activePayload[0]?.payload.date);
+    const isTooltipActive = e.isTooltipActive;
+    const activePayload = e.activePayload;
+
+    if (isTooltipActive && activePayload) {
+      const date = activePayload[0].payload.date;
+      setHover(date);
     }
   };
 
@@ -37,7 +41,7 @@ const Chart = () => {
       height={ChartStyleConfig.CHART_HEIGHT}
       data={chartData}
       margin={ChartStyleConfig.CHART_MARGIN}
-      onMouseMove={(e) => handleHover(e)}
+      onMouseMove={handleHover}
       onMouseLeave={() => setHover('')}
     >
       <XAxis
@@ -85,7 +89,9 @@ const Chart = () => {
           <Cell
             key={el.date}
             fill={
-              el.date === hover ? '#2F58CD' : ChartStyleConfig.BAR_FILL_COLOR
+              el.date === hover
+                ? ChartStyleConfig.BAR_HIGHRIGHT_COLOR
+                : ChartStyleConfig.BAR_FILL_COLOR
             }
           />
         ))}
@@ -97,7 +103,7 @@ const Chart = () => {
         fill={ChartStyleConfig.AREA_FILL_COLOR}
         fillOpacity={0.8}
         stroke={ChartStyleConfig.AREA_STROKE_COLOR}
-        activeDot={{ stroke: 'red', strokeWidth: 5, r: 10, fill: 'white' }}
+        activeDot={activedot}
       />
     </ComposedChart>
   );
