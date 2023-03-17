@@ -8,6 +8,7 @@ import {
   YAxis,
   ResponsiveContainer,
 } from 'recharts';
+import styled from 'styled-components';
 import { ChartStyleConfig } from '../../config/ChartStyleConfig';
 import { IChartData } from '../../types/dataType';
 import { ChartFilterFunction, filterById } from '../Filter/type';
@@ -19,7 +20,6 @@ import {
   StyledChartBar,
   StyledChartBase,
 } from './style';
-import styled from 'styled-components';
 
 const { BAR_HIGHRIGHT_COLOR, BAR_FILL_COLOR, BAR_HOVER_COLOR } =
   ChartStyleConfig;
@@ -66,6 +66,12 @@ const Chart = ({
 
   const resetHover = () => setHover('');
 
+  const areaClick = (e: any) => {
+    const clickID = e.activePayload[0].payload.id;
+
+    if (e) setFilterFunction(filterById(clickID));
+  };
+
   return (
     <Wrapper>
       <ResponsiveContainer>
@@ -73,6 +79,7 @@ const Chart = ({
           data={chartData}
           onMouseMove={handleHover}
           onMouseLeave={resetHover}
+          onClick={areaClick}
         >
           <XAxis dataKey='date' minTickGap={100}>
             <BottomLeftLabel value='2023-02-05일자' />
