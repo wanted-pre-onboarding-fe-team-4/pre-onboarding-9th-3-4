@@ -151,7 +151,17 @@ export default getData;
 
 https://user-images.githubusercontent.com/88178866/225913437-66feb2a8-ab87-47e4-a2d7-abeb416b4967.mov
 
+### 5. 코드리뷰
 
+지난 2주동안 저희 팀이 적극적인 코드리뷰가 부족했던 점이 있어서 PR 올린 후 30분 이내로 리뷰를 받고 한명이상의 승인을 받아야 머지하도록 변경하였습니다.
+
+덕분에 좀더 활발한 코드리뷰가 이루어졌습니다.
+
+기존의 지켰던 규칙도 꾸준히 진행하였습니다.
+
+- Issue 작성
+- Branch, commit 컨벤션
+- [PR에 issue 연계](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)
 
 
 ## 👾 코드 컨벤션
