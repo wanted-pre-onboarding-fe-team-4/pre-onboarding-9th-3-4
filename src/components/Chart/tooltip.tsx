@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const CustomTooltip = ({ active, payload }: any) => {
+export const CustomTooltip = ({ active, payload }: any) => {
   const valid = active && payload?.length;
 
   if (!valid) {
@@ -18,8 +18,6 @@ const CustomTooltip = ({ active, payload }: any) => {
     </TooltipStyle>
   );
 };
-
-export default CustomTooltip;
 
 const TooltipStyle = styled.div`
   background-color: white;

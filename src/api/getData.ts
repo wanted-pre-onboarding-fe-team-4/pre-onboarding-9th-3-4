@@ -1,13 +1,18 @@
 import axios from 'axios';
-import { convertData } from '../utils/convertData';
+import { IChartObj } from '../types/dataType';
 
 const getData = async () => {
   try {
-    const { data } = await axios.get('/mock_data.json');
+    const response = await axios.get('/mock_data.json');
+    const data: IChartObj = response.data.response;
 
-    return convertData(data.response);
+    return Object.entries(data).map(([key, value]) => ({
+      date: key.split(' ')[1],
+      ...value,
+    }));
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
