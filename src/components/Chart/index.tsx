@@ -12,7 +12,8 @@ import {
   StyledChartBase,
 } from './style';
 
-const { BAR_HIGHRIGHT_COLOR, BAR_FILL_COLOR } = ChartStyleConfig;
+const { BAR_HIGHRIGHT_COLOR, BAR_FILL_COLOR, BAR_HOVER_COLOR } =
+  ChartStyleConfig;
 
 interface ChartProps {
   getChartData: () => IChartData[];
@@ -39,10 +40,11 @@ const Chart = ({
   };
 
   const mapChartData = (data: IChartData) => {
-    const cellColor =
-      filterFunction(data) || data.date === hover
-        ? BAR_HIGHRIGHT_COLOR
-        : BAR_FILL_COLOR;
+    const cellColor = filterFunction(data)
+      ? BAR_HIGHRIGHT_COLOR
+      : data.date === hover
+      ? BAR_HOVER_COLOR
+      : BAR_FILL_COLOR;
 
     return (
       <Cell
