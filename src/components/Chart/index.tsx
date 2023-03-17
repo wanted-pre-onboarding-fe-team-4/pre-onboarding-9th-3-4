@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Tooltip, Legend, Cell, XAxis, Label, YAxis } from 'recharts';
-import getData from '../../api/getData';
 import { ChartStyleConfig } from '../../config/ChartStyleConfig';
 import { IChartData } from '../../types/dataType';
 import { CustomTooltip } from './tooltip';
@@ -14,15 +13,12 @@ import {
 
 const { BAR_HIGHRIGHT_COLOR, BAR_FILL_COLOR } = ChartStyleConfig;
 
-const Chart = () => {
-  const [chartData, setChartData] = useState<IChartData[]>();
-  const [hover, setHover] = useState('');
+interface ChartProps {
+  chartData: IChartData[];
+}
 
-  useEffect(() => {
-    getData().then((res) => {
-      setChartData(res);
-    });
-  }, []);
+const Chart = ({ chartData }: ChartProps) => {
+  const [hover, setHover] = useState('');
 
   const handleHover = (e: any) => {
     const { isTooltipActive, activePayload } = e;
@@ -40,10 +36,6 @@ const Chart = () => {
   };
 
   const resetHover = () => setHover('');
-
-  if (!chartData) {
-    return null;
-  }
 
   return (
     <StyledChartBase
