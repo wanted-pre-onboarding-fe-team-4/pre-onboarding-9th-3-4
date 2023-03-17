@@ -21,11 +21,8 @@ import {
   StyledChartBase,
 } from './style';
 
-const {
-  BAR_HIGHRIGHT_COLOR: BAR_HIGHLIGHT_COLOR,
-  BAR_FILL_COLOR,
-  BAR_HOVER_COLOR,
-} = ChartStyleConfig;
+const { BAR_HIGHLIGHT_COLOR, BAR_FILL_COLOR, BAR_HOVER_COLOR } =
+  ChartStyleConfig;
 
 interface ChartProps {
   getChartData: () => IChartData[];

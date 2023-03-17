@@ -5,7 +5,7 @@ export const ChartStyleConfig = {
 
   BAR_FILL_COLOR: '#9ea1ff',
   BAR_STROKE_COLOR: '#9ea1ff',
-  BAR_HIGHRIGHT_COLOR: '#5741c0',
+  BAR_HIGHLIGHT_COLOR: '#5741c0',
   BAR_HOVER_COLOR: '#f5cb6f',
 
   AREA_FILL_COLOR: '#ff7875',
