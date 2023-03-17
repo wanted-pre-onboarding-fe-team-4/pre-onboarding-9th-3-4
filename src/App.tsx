@@ -8,9 +8,9 @@ import {
 } from './components/Filter';
 import { suspendable } from './util/suspendable';
 
-function App() {
-  const getChartData = suspendable(getData());
+const getChartData = suspendable(getData());
 
+function App() {
   const [filterFunction, setFilterFunction] = useState<ChartFilterFunction>(
     () => defaultFilter
   );
