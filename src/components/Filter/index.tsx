@@ -33,6 +33,7 @@ export const Filter = ({ setFilterFunction, filterFunction }: FilterProps) => {
 const Wrapper = styled.div`
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 `;
 
 const Button = styled.button<ButtonType>`
