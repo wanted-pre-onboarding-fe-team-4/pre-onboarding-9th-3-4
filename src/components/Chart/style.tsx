@@ -6,6 +6,7 @@ const {
   CHART_WIDTH,
   CHART_HEIGHT,
   CHART_MARGIN,
+  BAR_FILL_COLOR,
   BAR_STROKE_COLOR,
   AREA_FILL_COLOR,
   AREA_STROKE_COLOR,
@@ -31,6 +32,7 @@ export const StyledChartBase = ({
 export class StyledChartBar extends Bar {
   static defaultProps = {
     ...Bar.defaultProps,
+    fill: BAR_FILL_COLOR,
     stroke: BAR_STROKE_COLOR,
     barSize: 20,
   };
