@@ -69,7 +69,7 @@ const Chart = ({
   const areaClick = (e: any) => {
     const clickID = e.activePayload[0].payload.id;
 
-    if (e) setFilterFunction(filterById(clickID));
+    setFilterFunction(filterById(clickID));
   };
 
   return (
@@ -79,7 +79,7 @@ const Chart = ({
           data={chartData}
           onMouseMove={handleHover}
           onMouseLeave={resetHover}
-          onClick={areaClick}
+          onClick={(e) => e && areaClick(e)}
         >
           <XAxis dataKey='date' minTickGap={100}>
             <BottomLeftLabel value='2023-02-05일자' />
