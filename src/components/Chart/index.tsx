@@ -62,9 +62,8 @@ const Chart = ({ getChartData }: ChartProps) => {
   const resetHover = () => setHover('');
 
   const areaClick = (e: any) => {
-    const clickID = e.activePayload[0].payload.id;
-
-    setFilterFunction(filterById(clickID));
+    const location = e.activePayload[0].payload.id;
+    changeLocation(location);
   };
 
   return (
