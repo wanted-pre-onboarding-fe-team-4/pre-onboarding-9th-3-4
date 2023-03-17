@@ -11,7 +11,7 @@ import {
 import styled from 'styled-components';
 import { ChartStyleConfig } from '../../config/ChartStyleConfig';
 import { IChartData } from '../../types/dataType';
-import { ChartFilterFunction, filterById } from '../Filter/type';
+import { useLocationFilter } from '../../contexts/locationFilter';
 import { CustomTooltip } from './tooltip';
 import {
   BottomLeftLabel,
@@ -21,21 +21,19 @@ import {
   StyledChartBase,
 } from './style';
 
-const { BAR_HIGHRIGHT_COLOR, BAR_FILL_COLOR, BAR_HOVER_COLOR } =
-  ChartStyleConfig;
+const {
+  BAR_HIGHRIGHT_COLOR: BAR_HIGHLIGHT_COLOR,
+  BAR_FILL_COLOR,
+  BAR_HOVER_COLOR,
+} = ChartStyleConfig;
 
 interface ChartProps {
   getChartData: () => IChartData[];
-  filterFunction: ChartFilterFunction;
-  setFilterFunction: (newFunction: () => ChartFilterFunction) => void;
 }
 
-const Chart = ({
-  getChartData,
-  filterFunction,
-  setFilterFunction,
-}: ChartProps) => {
+const Chart = ({ getChartData }: ChartProps) => {
   const chartData = getChartData();
+  const { changeLocation, locationFilter } = useLocationFilter();
   const [hover, setHover] = useState('');
 
   const handleHover = (e: any) => {
@@ -49,19 +47,16 @@ const Chart = ({
   };
 
   const mapChartData = (data: IChartData) => {
-    const cellColor = filterFunction(data)
-      ? BAR_HIGHRIGHT_COLOR
+    const cellColor = locationFilter(data)
+      ? BAR_HIGHLIGHT_COLOR
       : data.date === hover
       ? BAR_HOVER_COLOR
       : BAR_FILL_COLOR;
 
-    return (
-      <Cell
-        key={data.date}
-        fill={cellColor}
-        onClick={() => setFilterFunction(filterById(data.id))}
-      />
-    );
+    const handleCellClick = () => {
+      changeLocation(data.id);
+    };
+    return <Cell key={data.date} fill={cellColor} onClick={handleCellClick} />;
   };
 
   const resetHover = () => setHover('');
