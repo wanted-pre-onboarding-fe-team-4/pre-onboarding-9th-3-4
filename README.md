@@ -36,6 +36,17 @@
   
 ## 기능 구현
 
+<img width="1797" alt="스크린샷 2023-03-17 오후 10 22 18" src="https://user-images.githubusercontent.com/88178866/225916869-2840d243-a238-406c-8e95-593bae193220.png">
+
+
+https://user-images.githubusercontent.com/88178866/225917217-b8710779-076c-499c-98ea-e3d59c750909.mov
+
+https://user-images.githubusercontent.com/88178866/225917129-7b2586e0-f739-4837-9c3e-133d4533b985.mov
+
+
+
+
+
 
 #### ✅ Assignment 1 
 - 시계열 차트 만들기
@@ -135,6 +146,10 @@ export default getData;
 ```
 
 ### 4. 반응형 디자인 적용
+
+
+
+https://user-images.githubusercontent.com/88178866/225913437-66feb2a8-ab87-47e4-a2d7-abeb416b4967.mov
 
 
 
