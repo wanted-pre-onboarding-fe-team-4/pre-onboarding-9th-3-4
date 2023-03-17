@@ -1,11 +1,8 @@
 import { Suspense, useState } from 'react';
 import getData from './api/getData';
 import Chart from './components/Chart';
-import {
-  ChartFilterFunction,
-  defaultFilter,
-  Filter,
-} from './components/Filter';
+import { Filter } from './components/Filter';
+import { ChartFilterFunction, defaultFilter } from './components/Filter/type';
 import { suspendable } from './util/suspendable';
 
 const getChartData = suspendable(getData());

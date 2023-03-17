@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Tooltip, Legend, Cell, XAxis, Label, YAxis } from 'recharts';
 import { ChartStyleConfig } from '../../config/ChartStyleConfig';
 import { IChartData } from '../../types/dataType';
-import { ChartFilterFunction, createFilterFunction } from '../Filter';
+import { ChartFilterFunction, filterById } from '../Filter/type';
 import { CustomTooltip } from './tooltip';
 import {
   BottomLeftLabel,
@@ -48,7 +48,7 @@ const Chart = ({
       <Cell
         key={data.date}
         fill={cellColor}
-        onClick={() => setFilterFunction(createFilterFunction(data.id))}
+        onClick={() => setFilterFunction(filterById(data.id))}
       />
     );
   };
