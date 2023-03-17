@@ -55,11 +55,18 @@ const Chart = ({
 
   const resetHover = () => setHover('');
 
+  const areaClick = (e: any) => {
+    const clickID = e.activePayload[0].payload.id;
+
+    if (e) setFilterFunction(filterById(clickID));
+  };
+
   return (
     <StyledChartBase
       data={chartData}
       onMouseMove={handleHover}
       onMouseLeave={resetHover}
+      onClick={areaClick}
     >
       <XAxis dataKey='date' minTickGap={100}>
         <BottomLeftLabel value='2023-02-05일자' />
