@@ -20,13 +20,15 @@ function App() {
         filterFunction={filterFunction}
         setFilterFunction={setFilterFunction}
       />
-      <Suspense fallback={<div>Loading...</div>}>
-        <Chart
-          getChartData={getChartData}
-          filterFunction={filterFunction}
-          setFilterFunction={setFilterFunction}
-        />
-      </Suspense>
+      <ChartWrapper>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Chart
+            getChartData={getChartData}
+            filterFunction={filterFunction}
+            setFilterFunction={setFilterFunction}
+          />
+        </Suspense>
+      </ChartWrapper>
     </Wrapper>
   );
 }
@@ -42,6 +44,14 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   color: #373737;
+`;
+
+const ChartWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default App;
