@@ -1,27 +1,32 @@
 import styled from 'styled-components';
-import { ButtonType } from '../../types/ButtonType';
-import { ChartFilterFunction, filterById } from './type';
+import { useLocationFilter } from '../contexts/locationFilter';
+import { ButtonType } from '../types/ButtonType';
 
 const LOCATIONS = ['해제', '성북구', '강남구', '노원구', '중랑구'];
 
-interface FilterProps {
-  setFilterFunction: (newFunction: () => ChartFilterFunction) => void;
-  filterFunction: ChartFilterFunction;
-}
+export const FilterBox = () => {
+  const { changeLocation, locationFilter } = useLocationFilter();
+  const activated = (loc: string) => {
+    const currentLocation = {
+      id: loc,
+      date: '',
+      value_bar: 0,
+      value_area: 0,
+    };
+    return locationFilter(currentLocation);
+  };
 
-export const Filter = ({ setFilterFunction, filterFunction }: FilterProps) => {
+  const handleToggleFilter = (loc: string) => () => {
+    changeLocation(loc);
+  };
+
   return (
     <Wrapper>
       {LOCATIONS.map((loc) => (
         <Button
           key={loc}
-          active={filterFunction({
-            id: loc,
-            date: '',
-            value_bar: 0,
-            value_area: 0,
-          })}
-          onClick={() => setFilterFunction(filterById(loc))}
+          active={activated(loc)}
+          onClick={handleToggleFilter(loc)}
         >
           {loc}
         </Button>
