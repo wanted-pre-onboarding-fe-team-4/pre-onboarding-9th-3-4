@@ -14,6 +14,7 @@ function App() {
 
   return (
     <div className='App'>
+      <h1>Flexys Chart</h1>
       <Filter setFilterFunction={setFilterFunction} />
       <Suspense fallback={<div>Loading...</div>}>
         <Chart

@@ -8,7 +8,6 @@ interface FilterProps {
 
 export const Filter = ({ setFilterFunction }: FilterProps) => (
   <div>
-    <h1>Location Filter</h1>
     {LOCATIONS.map((loc) => (
       <button key={loc} onClick={() => setFilterFunction(filterById(loc))}>
         {loc}
