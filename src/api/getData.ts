@@ -8,6 +8,7 @@ const getData = async () => {
     return convertData(data.response);
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 

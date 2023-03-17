@@ -1,24 +1,18 @@
-import { useEffect, useState } from 'react';
+import { Suspense } from 'react';
 import getData from './api/getData';
 import Chart from './components/Chart';
-import { IChartData } from './types/dataType';
+import { Filter } from './components/Filter';
+import { suspendable } from './util/suspendable';
 
 function App() {
-  const [chartData, setChartData] = useState<IChartData[]>();
-
-  useEffect(() => {
-    getData().then((res) => {
-      setChartData(res);
-    });
-  }, []);
-
-  if (!chartData) {
-    return null;
-  }
+  const getChartData = suspendable(getData());
 
   return (
     <div className='App'>
-      <Chart chartData={chartData} />
+      <Filter />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Chart getChartData={getChartData} />
+      </Suspense>
     </div>
   );
 }

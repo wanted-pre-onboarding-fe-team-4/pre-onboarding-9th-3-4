@@ -14,10 +14,11 @@ import {
 const { BAR_HIGHRIGHT_COLOR, BAR_FILL_COLOR } = ChartStyleConfig;
 
 interface ChartProps {
-  chartData: IChartData[];
+  getChartData: () => IChartData[];
 }
 
-const Chart = ({ chartData }: ChartProps) => {
+const Chart = ({ getChartData }: ChartProps) => {
+  const chartData = getChartData();
   const [hover, setHover] = useState('');
 
   const handleHover = (e: any) => {
