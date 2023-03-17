@@ -13,29 +13,25 @@ const LocationFilterContext = createContext(defaultLocationFilterContext);
 export const useLocationFilter = () => useContext(LocationFilterContext);
 
 export const LocationFilterProvider = (props: PropsWithChildren) => {
-  const [filteredLocation, setFilterLocation] = useState({
-    prevLocation: '해제',
-    curLocation: '해제',
-  });
+  const [filteredLocation, setFilterLocation] = useState('해제');
 
   const changeLocation = (curLocation: string) => {
-    const { curLocation: prevLocation } = filteredLocation;
+    const prevLocation = filteredLocation;
     const dobuleToggle = curLocation === prevLocation;
     const reset = curLocation === '해제';
     const filterRemoved = dobuleToggle || reset;
     if (filterRemoved) {
-      setFilterLocation({ prevLocation, curLocation: '해제' });
+      setFilterLocation('해제');
       return;
     }
-    setFilterLocation({ prevLocation, curLocation });
+    setFilterLocation(curLocation);
   };
 
   const locationFilter = ({ id }: IChartData) => {
-    const { curLocation } = filteredLocation;
-    if (curLocation === '해제') {
+    if (filteredLocation === '해제') {
       return false;
     }
-    return curLocation === id;
+    return filteredLocation === id;
   };
 
   return (
