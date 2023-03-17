@@ -1,6 +1,6 @@
-import { IChartObj } from '../types/dataType';
+import { IChartData, IChartObj } from '../types/dataType';
 
-export const convertData = (data: IChartObj) => {
+export const convertData = (data: IChartObj): IChartData[] => {
   const dataArr = [];
 
   for (const [key, value] of Object.entries(data)) {

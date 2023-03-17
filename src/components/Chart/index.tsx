@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Tooltip, Legend, Cell, XAxis, Label, YAxis } from 'recharts';
 import { ChartStyleConfig } from '../../config/ChartStyleConfig';
 import { IChartData } from '../../types/dataType';
+import { ChartFilterFunction, createFilterFunction } from '../Filter';
 import { CustomTooltip } from './tooltip';
 import {
   BottomLeftLabel,
@@ -15,9 +16,15 @@ const { BAR_HIGHRIGHT_COLOR, BAR_FILL_COLOR } = ChartStyleConfig;
 
 interface ChartProps {
   getChartData: () => IChartData[];
+  filterFunction: ChartFilterFunction;
+  setFilterFunction: (newFunction: () => ChartFilterFunction) => void;
 }
 
-const Chart = ({ getChartData }: ChartProps) => {
+const Chart = ({
+  getChartData,
+  filterFunction,
+  setFilterFunction,
+}: ChartProps) => {
   const chartData = getChartData();
   const [hover, setHover] = useState('');
 
@@ -31,9 +38,19 @@ const Chart = ({ getChartData }: ChartProps) => {
     }
   };
 
-  const mapChartData = ({ date }: IChartData) => {
-    const cellColor = date === hover ? BAR_HIGHRIGHT_COLOR : BAR_FILL_COLOR;
-    return <Cell key={date} fill={cellColor} />;
+  const mapChartData = (data: IChartData) => {
+    const cellColor =
+      filterFunction(data) || data.date === hover
+        ? BAR_HIGHRIGHT_COLOR
+        : BAR_FILL_COLOR;
+
+    return (
+      <Cell
+        key={data.date}
+        fill={cellColor}
+        onClick={() => setFilterFunction(createFilterFunction(data.id))}
+      />
+    );
   };
 
   const resetHover = () => setHover('');
